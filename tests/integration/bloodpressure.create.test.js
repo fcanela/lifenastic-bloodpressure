@@ -46,6 +46,29 @@ describe('Blood pressure module create measure command', () => {
         });
     });
 
+    it('should be able to create a measure with metadata and return its id', (done) => {
+        const msg = {
+            role: 'bloodpressure',
+            cmd: 'create',
+            userId: 3,
+            date: (new Date).toISOString(),
+            systolic: 120,
+            diastolic: 80,
+            metadata: {
+                measures: 3,
+                awakening: true
+            }
+        };
+
+        client.act(msg, (err, reply) => {
+            if (err) return done(err);
+
+            assert.strictEqual(reply.errors.length, 0, 'errors detected');
+            assert.notStrictEqual(reply.measure.id, undefined, 'id field not returned');
+            done();
+        });
+    });
+
     it('should not create measures with missing fields', (done) => {
         const msg = {
             role: 'bloodpressure',
