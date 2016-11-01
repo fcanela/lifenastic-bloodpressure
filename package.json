@@ -1,0 +1,55 @@
+{
+  "name": "lifenastic-bloodpressure",
+  "version": "0.0.0",
+  "description": "Blood pressure microservice for Lifenastic",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint -c .eslint src/* db/*",
+    "test": "npm run lint && npm run test:unit && npm run test:integration && npm run test:coverage",
+    "test:unit": "mocha tests/unit/*.test.js",
+    "test:unit:watch": "mocha -w tests/unit/*.test.js",
+    "test:integration": "mocha tests/integration/*.test.js",
+    "test:integration:watch": "mocha -w tests/integration/*.test.js",
+    "test:coverage": "istanbul cover _mocha -- tests/**/*.test.js",
+    "db:migrate": "knex --knexfile db/config.js migrate:latest",
+    "db:rollback": "knex --knexfile db/config.js migrate:rollback",
+    "start": "node ./run.js"
+  },
+  "author": "fcanela",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.12.1",
+    "lodash": "^4.16.2",
+    "pg": "^6.1.0",
+    "seneca": "^3.1.0",
+    "seneca-amqp-transport": "^2.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.14",
+    "dotenv": "^2.0.0",
+    "eslint": "^3.6.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
+    "mocha-lcov-reporter": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=6.7.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fcanela/lifenastic-bloodpressure.git"
+  },
+  "keywords": [
+    "lifenastic",
+    "microservice",
+    "blood",
+    "pressure"
+  ],
+  "bugs": {
+    "url": "https://github.com/fcanela/lifenastic-bloodpressure/issues"
+  },
+  "homepage": "https://github.com/fcanela/lifenastic-bloodpressure#readme"
+}
